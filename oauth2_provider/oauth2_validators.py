@@ -898,6 +898,15 @@ class OAuth2Validator(RequestValidator):
         if application:
             return application.jwk_key
 
+    def _get_issuer_for_token(self, token):
+        """
+        Peek at the unvalidated token to discover who it was issued by.
+        """
+        unverified_token = jws.JWS()
+        unverified_token.deserialize(token)
+        claims = json.loads(unverified_token.objects["payload"].decode("utf-8"))
+        return claims.get("iss", None)
+
     def _get_client_by_audience(self, audience):
         """
         Load a client by the aud claim in a JWT.
