@@ -103,6 +103,14 @@ class AbstractApplication(models.Model):
         blank=True,
         help_text=_("Allowed URIs list, space separated"),
     )
+
+    post_logout_redirect_uris = models.TextField(
+        blank=True,
+        help_text=_(
+            "List of allowed redirect URIs to follow after an OIDC RP-initiated logout, space separated"
+        ),
+    )
+
     client_type = models.CharField(max_length=32, choices=CLIENT_TYPES)
     authorization_grant_type = models.CharField(max_length=32, choices=GRANT_TYPES)
     client_secret = ClientSecretField(

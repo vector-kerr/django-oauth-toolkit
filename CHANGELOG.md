@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * Add 'code_verifier' parameter to token requests in documentation
+* Add `post_logout_redirect_uris` field to application model for OIDC RP-initiated logout
 
 ### Changed
 * Support Django 4.1.
